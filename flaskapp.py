@@ -49,6 +49,11 @@ def viewdb():
     rows = execute_query("""SELECT * FROM natlpark""")
     return '<br>'.join(str(row) for row in rows)
 
+@app.route("/state/<state>")
+def sortby(state):
+    rows = execute_query("""SELECT * FROM natlpark WHERE state = ?""",
+                         [state.title()])
+    return '<br>'.join(str(row) for row in rows)
 
 if __name__ == '__main__':
   app.run()
